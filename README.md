@@ -13,21 +13,21 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 1. Install [Docker](https://www.docker.com/).
 
-2. Download [automated build](https://registry.hub.docker.com/u/dockerfile/rethinkdb/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull dockerfile/rethinkdb`
+2. Download [automated build](https://registry.hub.docker.com/u/dockerfile/rethinkdb/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull node3030/rethinkdb`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/rethinkdb" github.com/dockerfile/rethinkdb`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="node3030/rethinkdb" github.com/karantin2020/rethinkdb`)
 
 
 ### Usage
 
-    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb
+    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 node3030/rethinkdb
 
 #### Run the first host of cluster
 
-    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com`
+    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data node3030/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com`
 
 #### Run subsequent hosts joining to cluster
 
-    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com` -j <first-host-ip>:29015
+    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data node3030/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com` -j <first-host-ip>:29015
 
 After few seconds, Open `http://<host>:8080`.
