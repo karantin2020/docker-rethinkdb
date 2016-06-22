@@ -24,7 +24,7 @@ RUN \
 WORKDIR /home/data
 
 # Define default command.
-CMD ["/etc/init.d/rethinkdb", "restart"]
+CMD ["rethinkdb", "--bind", "all"]
 
 # Expose ports.
 #   - 8080: web UI
