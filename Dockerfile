@@ -5,27 +5,26 @@
 #
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM ubuntu:xenial
 
 # Install RethinkDB.
 RUN \
-  echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" > /etc/apt/sources.list.d/rethinkdb.list && \
-  wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
+  apt-get update && apt-get upgrade && \
+  echo "deb http://download.rethinkdb.com/apt xenial main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
+  apt-get install wget && \
+  wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
   apt-get update && \
-  apt-get install -y rethinkdb python-pip && \
-  rm -rf /var/lib/apt/lists/*
-
-# Install python driver for rethinkdb
-RUN pip install rethinkdb
-
-# Define mountable directories.
-VOLUME ["/data"]
+  apt-get install rethinkdb && \
+  \
+  cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance1.conf && \
+  \
+  apt-get clean && apt-get autoclean && apt-get -y autoremove
 
 # Define working directory.
-WORKDIR /data
+WORKDIR /home/data
 
 # Define default command.
-CMD ["rethinkdb", "--bind", "all"]
+CMD ["/etc/init.d/rethinkdb", "restart"]
 
 # Expose ports.
 #   - 8080: web UI
