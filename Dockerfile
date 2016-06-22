@@ -9,12 +9,12 @@ FROM ubuntu:xenial
 
 # Install RethinkDB.
 RUN \
-  apt-get update && apt-get upgrade && \
+  apt-get update && apt-get -y upgrade && \
   echo "deb http://download.rethinkdb.com/apt xenial main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
-  apt-get install wget && \
+  apt-get install -y wget && \
   wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
   apt-get update && \
-  apt-get install rethinkdb && \
+  apt-get -y install rethinkdb && \
   \
   cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance1.conf && \
   \
