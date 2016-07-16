@@ -15,7 +15,7 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 2. Download [automated build](https://hub.docker.com/r/node3030/rethinkdb) from public [Docker Hub](https://hub.docker.com/): `docker pull node3030/rethinkdb`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="node3030/rethinkdb" github.com/karantin2020/rethinkdb`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="node3030/rethinkdb" github.com/karantin2020/docker-rethinkdb`)
 
 
 ### Usage
