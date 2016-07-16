@@ -18,6 +18,7 @@ RUN \
   \
   cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance1.conf && \
   \
+  apt-get purge -autoremove -y wget && \
   apt-get clean && apt-get autoclean && apt-get -y autoremove
 
 # Define working directory.
