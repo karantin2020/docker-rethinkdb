@@ -31,3 +31,6 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
     docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data node3030/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl icanhazip.com` -j <first-host-ip>:29015
 
 After few seconds, Open `http://<host>:8080`.
+
+### Updates
+Update rethink 11.09.2016
